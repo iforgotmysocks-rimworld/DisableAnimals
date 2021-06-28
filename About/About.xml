@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>TemplateMod</name>
+	<author>iforgotmysocks</author>
+	<url></url>
+  <supportedVersions>
+    <li>1.2</li>
+  </supportedVersions>
+  <packageId>iforgotmysocks.templatemod</packageId>
+	<description>
+  
+	</description>
+</ModMetaData>
