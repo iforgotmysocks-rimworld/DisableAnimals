@@ -54,11 +54,11 @@ namespace DisableAnimals
         {
             animalDefs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x?.race?.Animal == true).ToList();
             if (disabledAnimalDefNames == null) disabledAnimalDefNames = new List<string>();
-
+            
+            if (!xmlOverride) return;
+            
             foreach (var def in animalDefs)
             {
-                if (!xmlOverride) break;
-
                 if (!disabledAnimalDefNames.Contains(def.defName)) continue;
                 if (def?.race?.wildBiomes != null) def.race.wildBiomes = new List<RimWorld.AnimalBiomeRecord>();
                 if (def?.tradeTags != null) def.tradeTags = new List<string>();
@@ -66,15 +66,13 @@ namespace DisableAnimals
 
             foreach (var biomeDef in DefDatabase<BiomeDef>.AllDefsListForReading)
             {
-                if (!xmlOverride) break;
-
                 var animalListField = typeof(BiomeDef).GetField("wildAnimals", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(biomeDef) as List<BiomeAnimalRecord>;
                 if (animalListField == null)
                 {
                     Log.Message($"List for {biomeDef.defName} was null");
                     continue;
                 }
-                foreach (var entry in animalListField.Reverse<BiomeAnimalRecord>())
+                foreach (var entry in animalListField)
                 {
                     if (!disabledAnimalDefNames.Contains(entry.animal.defName)) continue;
                     entry.commonality = 0;
