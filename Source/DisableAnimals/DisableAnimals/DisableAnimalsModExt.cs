@@ -7,7 +7,7 @@ using Verse;
 
 namespace DisableAnimals
 {
-    class DisableAnimalModExt : DefModExtension
+    class DisableAnimalsModExt : DefModExtension
     {
     }
 }

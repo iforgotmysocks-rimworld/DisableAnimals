@@ -52,7 +52,7 @@ namespace DisableAnimals
 
         public static void InitAndPatchAnimalDefs()
         {
-            animalDefs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.HasModExtension<DisableAnimalModExt>()).ToList();
+            animalDefs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.HasModExtension<DisableAnimalsModExt>()).ToList();
             if (animalDefs == null || animalDefs.Count == 0) animalDefs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x?.race?.Animal == true).ToList();
             if (disabledAnimalDefNames == null) disabledAnimalDefNames = new List<string>();
             if (!xmlOverride) return;
